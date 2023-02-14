@@ -1,23 +1,35 @@
 package Repository;
 
+import Controller.StudentController;
 import Model.Student;
 
-import java.io.FileWriter;
 import java.util.List;
 
 public class StudentRepository {
+    private StudentController studentController = new StudentController();
+
     public void save(Student student){
-        try(FileWriter fileWriter = new FileWriter("students.txt")){
-            fileWriter.write(student.toString());
-            fileWriter.flush();
-
-        }catch (Exception exception){}
+        studentController.save(student);
     }
-    public void remove(Student student){}
 
-    public void edit(Student student){}
-
-    public List getAllStudents(){
-        return null;
+    public void saveAllStudents(List <Student> students){
+        studentController.saveAllStudents(students);
     }
+
+    public void remove(Student student) {
+        studentController.remove(student);
+    }
+
+    public void edit(Student student){
+        studentController.edit(student);
+    }
+
+    public List<Student> getAllStudents() {
+        return studentController.getAllStudents();
+    }
+
+    public Student getStudent(String name) {
+        return studentController.getStudent(name);
+    }
+
 }
